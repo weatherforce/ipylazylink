@@ -1,0 +1,2 @@
+recursive-include ipylazylink/static *.*
+include ipylazylink.json
