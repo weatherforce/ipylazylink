@@ -22,6 +22,7 @@ var LazyLinkView = widgets.DOMWidgetView.extend({
             this.link.setAttribute(attrName, this.model.get(attrName));
           }
         }, this);
+        this.downloadAttributeSetByUser = (this.model.get("download") !== "");;
         var textNode = document.createTextNode(this.model.get("text"));
         this.link.appendChild(textNode);
         this.el.appendChild(this.link);
@@ -29,7 +30,18 @@ var LazyLinkView = widgets.DOMWidgetView.extend({
 
     href_changed: function() {
         this.link.setAttribute("href", this.model.get("href"));
+        if (!this.downloadAttributeSetByUser) {
+          this.setDownloadAttributeFromHref();
+        }
         this.link.click();
+    },
+
+    setDownloadAttributeFromHref: function() {
+        let path = this.model.get("href"),
+            parts = path.split("/"),
+            lastIndex = parts.length - 1;
+            filename = parts[lastIndex];
+        this.link.setAttribute("download", filename);
     },
     
     events: function() {
