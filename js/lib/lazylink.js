@@ -4,17 +4,27 @@ var _ = require('lodash');
 
 var LazyLinkView = widgets.DOMWidgetView.extend({
 
+    initialize: function() {
+        widgets.DOMWidgetView.prototype.initialize.apply(this, arguments);
+        this.model.on('change:href', this.href_changed, this);
+        ["text", "title", "target", "download", "type"].forEach(function(attrName) {
+          this.model.on('change:' + attrName, this.render, this);
+        }, this);
+    },
+
     render: function() {
+        console.log("render");
         this.el.innerHTML = "";
         this.link = document.createElement("a");
         this.link.setAttribute("href", this.model.get("href"));
-        this.link.setAttribute("title", this.model.get("title"));
-        this.link.setAttribute("target", this.model.get("target"));
+        ["title", "target", "download", "type"].forEach(function(attrName) {
+          if(this.model.get(attrName) !== "") {
+            this.link.setAttribute(attrName, this.model.get(attrName));
+          }
+        }, this);
         var textNode = document.createTextNode(this.model.get("text"));
         this.link.appendChild(textNode);
         this.el.appendChild(this.link);
-        this.model.on('change:href', this.href_changed, this);
-        this.model.on('change:text change:title change:target', this.render, this);
     },
 
     href_changed: function() {

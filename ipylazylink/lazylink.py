@@ -8,6 +8,8 @@ class LazyLink(widgets.Button):
     _view_module = Unicode('ipylazylink').tag(sync=True)
     _view_module_version = Unicode('0.1.0').tag(sync=True)
     href = Unicode("#").tag(sync=True)
+    download = Unicode().tag(sync=True)
+    type = Unicode().tag(sync=True)
     text = Unicode("Download file").tag(sync=True)
     title = Unicode().tag(sync=True)
     target = Unicode().tag(sync=True)
