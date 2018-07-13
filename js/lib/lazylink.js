@@ -29,6 +29,7 @@ var LazyLinkView = widgets.DOMWidgetView.extend({
     _handleClick: function(event) {
         if (this.model.get("href") === "#") {
             event.preventDefault();
+            // Send click event to kernel
             this.send({event: 'click'});
         }
     }

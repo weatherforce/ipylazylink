@@ -13,8 +13,15 @@ class LazyLink(widgets.Button):
     target = Unicode().tag(sync=True)
 
     def on_click(self, callback, remove=False):
+        """
+        Add a click handler callback.
+
+        `callback` must be a callable (eg. a function) that returns the path
+        to the file to download.
+        """
 
         def callback_wrapper(download_link):
+            # This will trigger a client-side model update
             download_link.href = callback()
 
         self._click_handlers.register_callback(callback_wrapper, remove=remove)
