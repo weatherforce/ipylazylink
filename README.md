@@ -41,13 +41,13 @@ w.on_click(create_file)
 Installation
 ------------
 
-To install use pip:
+To install using pip:
 
-    $ pip install ipylazylink
+    $ pip install git+https://github.com/weatherforce/ipylazylink.git
     $ jupyter nbextension enable --py --sys-prefix ipylazylink
 
 
-For a development installation (requires npm),
+For a development installation (requires npm):
 
     $ git clone https://github.com/weatherforce/ipylazylink.git
     $ cd ipylazylink
