@@ -17,6 +17,7 @@ var LazyLinkView = widgets.DOMWidgetView.extend({
         this.el.innerHTML = "";
         this.link = document.createElement("a");
         this.link.setAttribute("href", this.model.get("href"));
+        this.link.classList.add("ipylazylink");
         ["title", "target", "download", "type"].forEach(function(attrName) {
           if(this.model.get(attrName) !== "") {
             this.link.setAttribute(attrName, this.model.get(attrName));
