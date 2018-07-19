@@ -15,9 +15,10 @@ var LazyLinkView = widgets.DOMWidgetView.extend({
     render: function() {
         console.log("render");
         this.el.innerHTML = "";
+        this.el.classList.add("jupyter-widgets");
         this.link = document.createElement("a");
         this.link.setAttribute("href", this.model.get("href"));
-        this.link.classList.add("ipylazylink");
+        this.link.classList.add("widget-lazylink");
         ["title", "target", "download", "type"].forEach(function(attrName) {
           if(this.model.get(attrName) !== "") {
             this.link.setAttribute(attrName, this.model.get(attrName));
