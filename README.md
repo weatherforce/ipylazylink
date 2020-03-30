@@ -12,12 +12,12 @@ do this you would add to your notebook a link that points to a file, using
 something like
 [FileLink](https://ipython.org/ipython-doc/3/api/generated/IPython.display.html#IPython.display.FileLink).
 The problem with this approach is that the file must already exist, so you need to
-generate the file even if users never download it. When this file generation takes time and you have several such links, it can significanly slow down execution
+generate the file even if users never download it. When this file generation takes time and you have several such links, it can significantly slow down execution
 of your notebook for something that might never be used.
 
 The `LazyLink` widget aims at solving this problem by providing a link to a
 file that doesn't exist yet: a *lazy link*. The file gets created on-demand by a callback
-funtion that you provide. That function must return the path to the file that
+function that you provide. That function must return the path to the file that
 it creates.
 
 Usage
